@@ -1,4 +1,17 @@
-var a = 4;
-var b = 2;
-var c = a/b;
-console.log('Look at this ' + c);
+//function statement
+function greet() {
+	console.log('hi');
+};
+greet();
+
+//function expression
+var greetMe = function() {
+	console.log('Hi Tony');
+};
+greetMe();
+
+//functions are first-class
+function logGreeting(fn) {
+	fn();
+};
+logGreeting(greet);

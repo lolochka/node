@@ -1,24 +1,17 @@
-var fs = require('fs');//module for working with files
-var zlib = require('zlib');//module for compress and uncompressfile
+/*78.132.160.4:443 IP:Port
+Socket adress*/
 
-var gzip = zlib.createGzip();//
+var http = require('http');//module for sreating Server
+var fs = require('fs');
 
-var readable = fs.createReadStream(__dirname + '/lorem.txt', {encoding: 'utf8', highWaterMark: 16 * 1024 });//buffer is larger then our file so we create highWaterMark - max size in bytes
-
-var writable = fs.createWriteStream(__dirname + '/new-lorem.txt');
-
-var pipeWritable = fs.createWriteStream(__dirname + '/pipe-lorem.txt');
-
-var compressed = fs.createWriteStream(__dirname + '/compressed-lorem.txt.gz');
-
-readable.on('data', function(chunk) {
-    console.log(chunk.length);
-    writable.write(chunk);
-});
-
-console.log('Hello');
-
-//pipe method
-readable.pipe(pipeWritable);//source.pipe(destination) => this method return a destination so we can make method chain such as readeble.pipe(pipeWriteble).pipe(new) but DEST Stream must be also readable so we need a DUPLEX or TRANSFORM stream
-
-readable.pipe(gzip).pipe(compressed);
+http.createServer(function(req, res) {
+    
+    res.writeHead(200, { 'Content-Type': 'text/html'  });
+    console.log(req.headers['user-agent']);
+    console.log("------------------------------");
+    var html = fs.readFileSync(__dirname + '/index.html', 'utf8');
+    var browser = req.headers['user-agent'];
+    html = html.replace('{Message}', browser);
+    res.end(html);
+    
+}).listen(1456, '127.0.0.1');

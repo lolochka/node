@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <title>My NODE JS</title>
+        <link rel="stylesheet" href="/assets/main.css" type="text/css">
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    </head>
+    <body>
+        <h1>Hello man!!!</h1>
+        <form method="POST" action="/person">
+            First name: <input type="text" id="firstname" name="firstname"></br>
+            Last name: <input type="text" id="lastname" name="lastname"></br>
+            <input type="submit" value="submit">
+        </form>
+        <!--<script>
+            $.ajax({
+                type: "POST",
+                url: '/personjson',
+                data: JSON.stringify({firstname: 'John', lastname: 'Doe'}),
+                dataType: 'json',
+                contentType: 'application/json'
+            }).done(function( msg ) {
+                alert( "Data Saved: " + msg );
+            });
+        </script>-->
+    </body>
+</html>
